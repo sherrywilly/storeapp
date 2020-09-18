@@ -1,44 +1,104 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Home
-    </ion-title>
-  </ion-toolbar>
+<ion-header no-border>
+<ion-toolbar color="primary">
+<ion-buttons slot="end">
+<ion-menu-button></ion-menu-button>
+</ion-buttons>
+</ion-toolbar>
 </ion-header>
 
-<ion-content>
-    <ion-card class="welcome-card">
-      <img src="/assets/shapes.svg" alt="" />
-      <ion-card-header>
-        <ion-card-subtitle>Get Started</ion-card-subtitle>
-        <ion-card-title>Welcome to Ionic</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
-      </ion-card-content>
-    </ion-card>
-    <ion-list lines="none">
-      <ion-list-header>
-        <ion-label>Resources</ion-label>
-      </ion-list-header>
-      <ion-item href="https://ionicframework.com/docs/">
-        <ion-icon slot="start" color="medium" name="book"></ion-icon>
-        <ion-label>Ionic Documentation</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/building/scaffolding">
-        <ion-icon slot="start" color="medium" name="build"></ion-icon>
-        <ion-label>Scaffold Out Your App</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/layout/structure">
-        <ion-icon slot="start" color="medium" name="grid"></ion-icon>
-        <ion-label>Change Your App Layout</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/theming/basics">
-        <ion-icon slot="start" color="medium" name="color-fill"></ion-icon>
-        <ion-label>Theme Your App</ion-label>
-      </ion-item>
-    </ion-list>
+<ion-content *ngIf="data && text">
+
+<div class="bg">
+<p>{{ store.name }}</p>
+
+</div>
+
+<ion-card mode="ios" style="background-color: white;margin-top: -22%">
+
+<ion-card-header>
+
+<ion-card-subtitle>{{ text.s_order_overview }}</ion-card-subtitle>
+
+</ion-card-header>
+
+<ion-card-content>
+
+<ion-row style="text-align: center">
+
+<ion-col size="6" style="border-right:1px solid #e8e8e8"><ion-icon name="cart" style="font-size: 30px" color="primary"></ion-icon><br>{{ text.s_total_order }}<br><small>{{ overview.total }}</small></ion-col>
+
+<ion-col size="6"><ion-icon name="checkmark-circle" style="font-size: 30px" color="primary"></ion-icon><br>{{ text.s_complete_order }}<br><small>{{ overview.complete }}</small></ion-col>
+
+</ion-row>
+
+</ion-card-content>
+
+</ion-card>
+
+<ion-segment [(ngModel)]="pet">
+<ion-segment-button value="1">
+{{ text.s_new_order }}
+</ion-segment-button>
+<ion-segment-button value="2">
+{{ text.s_complete_order }}
+</ion-segment-button>
+
+</ion-segment>
+
+<div [ngSwitch]="pet">
+
+<div *ngSwitchCase="1">
+
+<ion-card mode="ios" style="background-color: white;" *ngFor="let order of data" (click)="detail(order)">
+
+<ion-card-content>
+
+<ion-row>
+<ion-col size="2"><ion-badge>{{ order.id }}</ion-badge></ion-col>
+<ion-col size="6">{{ order.name }}
+
+<br><small>{{ order.address }}</small>
+
+</ion-col>
+<ion-col size="4"> <b style="font-size: 14px;float: right">{{ order.currency }} {{ order.total }}</b><br>
+
+<small style="color:orange;float: right" *ngIf="order.status == 0">{{ text.s_new_status }}</small>
+<small style="color:green;float: right" *ngIf="order.status == 1">{{ text.s_confirm_order }}</small>
+<small style="color:blue;float: right" *ngIf="order.status == 3">{{ text.s_out_delivery_status }}</small>
+<small style="color:black;float: right" *ngIf="order.status == 4">{{ text.s_complete_status }}</small>
+
+</ion-col>
+</ion-row>
+
+</ion-card-content>
+
+</ion-card>
+
+</div>
+
+<div *ngSwitchCase="2">
+
+<ion-card mode="ios" style="background-color: white;" *ngFor="let order of complete" (click)="detail(order)">
+
+<ion-card-content>
+
+<ion-row>
+<ion-col size="2"><ion-badge>{{ order.id }}</ion-badge></ion-col>
+<ion-col size="6">{{ order.name }}
+
+<br><small>{{ order.address }}</small>
+
+</ion-col>
+<ion-col size="4"> <b style="font-size: 14px;float: right">{{ order.currency }} {{ order.total }}</b>
+</ion-col>
+</ion-row>
+
+</ion-card-content>
+
+</ion-card>
+
+</div>
+
+</div>
+
 </ion-content>
