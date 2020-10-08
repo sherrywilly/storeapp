@@ -1,7 +1,7 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { ServerService } from '../service/server.service';
 import { NavController,Platform,LoadingController,IonSlides,Events,AlertController,ToastController } from '@ionic/angular';
-
+import { NativeAudio } from '@ionic-native/native-audio/ngx';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -15,9 +15,10 @@ export class HomePage {
   complete:any;
   pet:number = 1;
   overview:any;
-intr:any;
+  intr:any;
 
-  constructor(public toastController: ToastController,public alertController: AlertController,public server : ServerService,private nav: NavController,public events: Events,public loadingController : LoadingController)
+  constructor(public toastController: ToastController, private audio: NativeAudio,
+    private platform: Platform, public alertController: AlertController,public server : ServerService,private nav: NavController,public events: Events,public loadingController : LoadingController)
   {
     this.intr = setInterval(() => {      
         
@@ -40,7 +41,12 @@ intr:any;
   {
     
   }
+  ngAfterViewInit(){
+    if (this.platform.ready())
+    this.audio.preloadSimple('newOrder', 'assets/ringtones/notify.mpeg');
+   
 
+  }
   async loadData()
   {
     const loading = await this.loadingController.create({
@@ -49,12 +55,24 @@ intr:any;
     await loading.present();
 
     this.server.homepage(localStorage.getItem('user_id'),0).subscribe((response:any) => {
-    this.data      = response.data;
+
+      let oldId = (this.data && this.data[0]) ? this.data[0].id : -1
+      this.data = response.data;
     this.store     = response.store;
     this.text      = response.text;
     this.overview  = response.overview;
     this.complete  = response.complete;
 
+  
+    if (oldId != -1 && oldId != this.data[0].id) {
+
+      if(this.platform.is('cordova')){
+        this.audio.loop('newOrder');
+
+      }
+      this.presentToast('New Order Received')
+
+    }
     this.events.publish('text', this.text);
     this.events.publish('admin', response.admin);
 

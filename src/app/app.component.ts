@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Platform,NavController,Events } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+ import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 import { ServerService } from './service/server.service';
@@ -28,6 +29,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private geolocation: Geolocation,
+    private backgroundMode: BackgroundMode,
     public nav : NavController,
     private oneSignal: OneSignal,
     public events: Events,
@@ -202,7 +204,14 @@ export class AppComponent {
       this.statusBar.overlaysWebView(false);
       this.statusBar.backgroundColorByHexString('#f44336');
       this.statusBar.styleLightContent();
+      this.backgroundMode.enable();
+      this.backgroundMode.on("activate").subscribe(()=>{
+        this.backgroundMode.disableWebViewOptimizations(); 
+        setInterval(() => {      
+           this.getGeolocation()
 
+        },15000); 
+      });
       this.subPush();
 
     });

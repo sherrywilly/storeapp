@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.fdaStoreSaharanPunit" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="10000" id="com.doorbee.store" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>FDA Store</name>
     <description>FDA Store</description>
-    <author email="saharanpunit@gmail.com" href="http://punitsaharan.com/">Food Delivery App</author>
+    <author email="doorbeeapp@gmail.com" href="">Store App</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

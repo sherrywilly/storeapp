@@ -26,6 +26,7 @@ export class LoginPage implements OnInit {
 
   async login(data)
   {
+    data.store =1
     const loading = await this.loadingController.create({
       message: 'Please wait...',
     });

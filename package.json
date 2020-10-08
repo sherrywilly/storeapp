@@ -20,8 +20,10 @@
     "@angular/platform-browser": "~8.1.2",
     "@angular/platform-browser-dynamic": "~8.1.2",
     "@angular/router": "~8.1.2",
+    "@ionic-native/background-mode": "^5.28.0",
     "@ionic-native/core": "^5.14.0",
     "@ionic-native/geolocation": "^5.14.0",
+    "@ionic-native/native-audio": "^5.28.0",
     "@ionic-native/native-geocoder": "^5.14.0",
     "@ionic-native/onesignal": "^5.18.0",
     "@ionic-native/paypal": "^5.18.0",
@@ -33,10 +35,12 @@
     "com.paypal.cordova.mobilesdk": "3.5.0",
     "cordova-android": "^7.1.4",
     "cordova-plugin-add-swift-support": "2.0.2",
+    "cordova-plugin-background-mode": "^0.7.3",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-geolocation": "4.0.2",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.1.2",
+    "cordova-plugin-nativeaudio": "^3.0.9",
     "cordova-plugin-nativegeocoder": "^3.2.2",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-statusbar": "^2.4.2",
@@ -90,7 +94,9 @@
       "cordova-plugin-geolocation": {},
       "com.paypal.cordova.mobilesdk": {},
       "cordova-plugin-stripe": {},
-      "cordova-plugin-nativegeocoder": {}
+      "cordova-plugin-nativegeocoder": {},
+      "cordova-plugin-background-mode": {},
+      "cordova-plugin-nativeaudio": {}
     },
     "platforms": [
       "android"
