@@ -94,7 +94,16 @@ export class HomePage {
       duration: 3000,
       position : 'top',
       mode:'ios',
-      color:'dark'
+      color:'dark',
+      buttons: [
+        {
+          text: 'Accept',
+          handler: () => {
+            console.log('Favorite clicked');
+             this.audio.stop('newOrder')
+          }
+        }
+      ]
     });
     toast.present();
   }
