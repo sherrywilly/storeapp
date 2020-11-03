@@ -55,19 +55,24 @@ export class HomePage {
     await loading.present();
 
     this.server.homepage(localStorage.getItem('user_id'),0).subscribe((response:any) => {
-
-      let oldId = (this.data && this.data[0]) ? this.data[0].id : -1
+    let oldId = (this.data && this.data[0]) ? this.data[0].id : -1
       this.data = response.data;
+    
     this.store     = response.store;
     this.text      = response.text;
     this.overview  = response.overview;
     this.complete  = response.complete;
-
+     console.log(oldId);
+     console.log(this.data[0].id);
   
     if (oldId != -1 && oldId != this.data[0].id) {
-
+      console.log("ehhh");
       if(this.platform.is('cordova')){
         this.audio.loop('newOrder');
+        setTimeout(()=>{
+          this.audio.stop('newOrder')
+        },20000);
+        
 
       }
       this.presentToast('New Order Received')

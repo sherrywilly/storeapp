@@ -4,7 +4,7 @@
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
-  --ion-color-primary: #f44336;
+  --ion-color-primary: #fded01;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -80,7 +80,7 @@
 
 .welcome_header
 {
-  background-color: #f44336;
+  background-color: #fded01;
   height: 25%;
   border-bottom-right-radius: 25%; 
   border-bottom-left-radius: 25%;
@@ -98,7 +98,7 @@
 
 ion-button
 {
-  --background-activated:#ab372e;
+  --background-activated:#0000;
 }
 
 .my-custom-modal-css .modal-wrapper {
@@ -119,7 +119,7 @@ a{
 .donePage
 {
   width:100%;
-  background-color: #f44336;
+  background-color: #fded01;
   height: 30%;
   border-bottom-left-radius: 15%;
   border-bottom-right-radius: 15%;
@@ -127,7 +127,7 @@ a{
 
 .bg
 {
-  background-color: #f44336;
+  background-color: #fded01;
   height: 150px;
   color:white;
   font-weight: 700;
